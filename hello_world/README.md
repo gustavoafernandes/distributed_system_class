@@ -1,6 +1,6 @@
 # Simple Flask Application for Distributed Systems Class
 
-Esta página apresenta uma simples API em Flask. O objeitvo é entender os conceitos básicos do Flask ao tratar as requisições HTTP GET e POST, principalmente.
+Esta página apresenta uma simples API em Flask. O objetivo é entender os conceitos básicos do Flask ao tratar as requisições HTTP GET e POST, principalmente.
 
 Esta aplicação Flask é um exemplo básico para demonstrar os conceitos de API REST, rotas, programação em Python e métodos HTTP. Ela é projetada como uma ferramenta introdutória para ensinar estudantes sobre os fundamentos do desenvolvimento web e sistemas distribuídos.
 
@@ -26,10 +26,6 @@ Também existem muitas ferramentas populares para permitir testes rápidos de AP
 
 * src/app.py: A aplicação Flask, isto é, nosso serviço. Leia mais em *https://flask.palletsprojects.com/en/3.0.x/*.
 
-## Postman
-
-Postman ajuda o desenvolvedor da API a organizar requisições de API dentro de Coleções. Após criar a conta, você deverá criar uma coleção de requisições. Acesse https://www.postman.com/ e crie uma conta e/ou faça o download da aplicação. Você também pode, por exemplo, instalar uma extensão na sua IDE.
-
 ## Visão Geral
 
 A aplicação consiste em um armazenamento de mensagens simples e duas rotas:
@@ -39,7 +35,7 @@ A aplicação consiste em um armazenamento de mensagens simples e duas rotas:
 
 ## Passos para Executar Local
 
-- Certifique-se de que Python e Flask estejam instalados.
+- Certifique-se de que Python e Flask estejam instalados. Preferencialmente, use um ambiente para desenvolver cada projeto.
 - Navegue até o diretório da aplicação Flask.
 - Execute o script usando o comando:
 ```
@@ -57,6 +53,20 @@ O [Codespace](https://github.com/codespaces) é um ambiente de desenvolvimento e
 - Execute a aplicação conforme o comando anterior.
 - Atente-se ao endereço disponibilizado em "PORTAS".
 
+## Postman
+
+Postman ajuda o desenvolvedor da API a organizar requisições de API dentro de Coleções. Após criar a conta, você deverá criar uma coleção de requisições. Acesse https://www.postman.com/ e crie uma conta e/ou faça o download da aplicação. Você também pode, por exemplo, instalar uma extensão na sua IDE.
+
+- Na IDE VSCode, clique sobre a extensão do Postman já instalada.
+- Faça a autenticação.
+- Crie uma nova coleção.
+- Adicione uma nova "request".
+- Configure da seguinte maneira:
+   - Método: POST
+   - URL: Endereço local ou endereço via Codespace. *Não se esqueça da rota!*
+   - Em "Body", formate uma mensagem 'raw' json com a seguinte estrutura: "{'message': 'Hello, World!'}"
+   - Clique em "Send". Analise a resposta da API.
+
 Pratique e estude bastante. :rocket:
 
 ## Exercício
@@ -72,7 +82,7 @@ Após se familiarizar com essa simples aplicação, você deverá responder as s
 ### HTTP
 1. Quais são os papéis dos métodos HTTP GET e POST em aplicações web, e como eles são demonstrados nesta aplicação Flask?
 2. Explique os conceitos de *stateless* e *stateful* no HTTP e como isso afeta o gerenciamento de dados em aplicações web.
-3. Descreva o papel dos códigos de status HTTP em APIs REST.
+3. Descreva o papel dos códigos de status HTTP.
 
 ### Routing e REST APIs
 1. O que é uma rota em uma aplicação web, e como as rotas são definidas no Flask?
