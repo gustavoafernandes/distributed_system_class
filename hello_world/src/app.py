@@ -11,10 +11,10 @@ def home():
 
 @app.route('/send', methods=['POST'])
 def send_message():
-    # Store the new message from the form data
-    message = request.form.get('message', '')
+    # Store the new message from the json data
+    message = request.get_json(force=True)
     if message:
-        message_store["message"] = message
+        message_store["message"] = message["message"]
     # Redirect back to the home page
     return redirect(url_for('home'))
 
