@@ -71,7 +71,7 @@ Postman ajuda o desenvolvedor da API a organizar requisições de API dentro de 
 
 Pratique e estude bastante. :rocket:
 
-## Exercício
+## 1. Exercício para entrega
 
 Após se familiarizar com essa simples aplicação, você deverá responder as seguintes perguntas.
 
@@ -94,3 +94,6 @@ Após se familiarizar com essa simples aplicação, você deverá responder as s
 1. Como o simples armazenamento de mensagens nesta aplicação poderia ser adaptado para um sistema distribuído escalável?
 2. Quais desafios surgiriam ao tornar esta aplicação Flask altamente disponível e tolerante a falhas, após a(s) adaptação(ões), em um sistema distribuído?
 
+## 2. Exercício opcional
+
+Você poderia aprimorar essa aplicação para que a estrutura que armazena as mensagens no backend contenha uma lista de mensagens, porém ainda usando a chave "messages". Com isso ao solicitar a rota "/" a lista de mensagens deve ser retornada. E, ao realizar um POST na rota "/send" contendo uma nova mensagem, essa nova mensagem é inserida e a lista de mensagens é atualizada.
