@@ -50,20 +50,22 @@ O [Codespace](https://github.com/codespaces) é um ambiente de desenvolvimento e
 - No repositório do Github, clique em "Code".
 - Em seguida, clique na aba "Codespaces".
 - Clique em "Create Codespace" para criar uma nova instância.
-- Execute a aplicação conforme o comando anterior.
-- Atente-se ao endereço disponibilizado em "PORTAS".
+- Execute a aplicação conforme o comando anterior para Execução Local.
+- Atente-se ao endereço disponibilizado em "PORTAS", assim como, deixe a visibilidade do endereço web como "Público".
+
+:warning: **Atenção!** Desligue a sua instância do Codespace, uma vez que você possui um [limite mensal gratuito de utilização](https://docs.github.com/en/codespaces/overview#billing-for-codespaces).
 
 ## Postman
 
 Postman ajuda o desenvolvedor da API a organizar requisições de API dentro de Coleções. Após criar a conta, você deverá criar uma coleção de requisições. Acesse https://www.postman.com/ e crie uma conta e/ou faça o download da aplicação. Você também pode, por exemplo, instalar uma extensão na sua IDE.
 
-- Na IDE VSCode, clique sobre a extensão do Postman já instalada.
+- Na IDE VSCode, clique sobre a extensão do Postman já instalada. Caso não tenha instalado, instale a extensão.
 - Faça a autenticação.
 - Crie uma nova coleção.
 - Adicione uma nova "request".
 - Configure da seguinte maneira:
    - Método: POST
-   - URL: Endereço local ou endereço via Codespace. *Não se esqueça da rota!*
+   - URL: Endereço local ou endereço via Codespace. *Não se esqueça da rota correta e de alterar a visibilidade do endereço disponibilizado pelo github!*
    - Em "Body", formate uma mensagem 'raw' json com a seguinte estrutura: "{'message': 'Hello, World!'}"
    - Clique em "Send". Analise a resposta da API.
 
