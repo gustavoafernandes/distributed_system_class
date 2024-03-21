@@ -59,7 +59,7 @@ Pratique e estude bastante. :rocket:
 
 Após se familiarizar com os exemplos, você deverá encontrar a marcação "TODO" em *example\_2.py* e você deverá implementar o Decorator vanilla (baunilha) simulando aumentar o sabor no café. Esse Decorator deve implementar o mesmo padrão dos anteriores, adicionando custo (cost) e descrição (description). Você deverá entregar todo o arquivo *example\_2.py* atualizado com um exemplo implementado do seu novo Decorator.
 
-## 2. Python e Flask
+## 2. Design Patterns
 
 Após executar e interagir com a aplicação Flask, responda:
 
