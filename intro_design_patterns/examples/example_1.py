@@ -14,7 +14,7 @@ say_hello()
 
 print()
 
-# Decora a funcao say_goodbye porem usado a sintaxe @
+# Decora a funcao say_goodbye porem usando a sintaxe @
 @my_decorator
 def say_goodbye():
     print("Goodbye!")
