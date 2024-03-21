@@ -1,4 +1,4 @@
-# Using Padrões de Projeto (Design Patterns)
+# Usando Padrões de Projeto (Design Patterns)
 
 Os Padrões de Projeto são uma parte crucial da engenharia de software, fornecendo soluções generalizadas e reutilizáveis ​​para problemas comuns encontrados no projeto de software. Eles representam as melhores práticas, evoluídas através da experiência coletiva de engenheiros de software qualificados ao longo do tempo, e são categorizados em três tipos principais: **padrões de criação**, **estruturais** e **comportamentais**.
 
@@ -59,10 +59,12 @@ Pratique e estude bastante. :rocket:
 
 Após se familiarizar com os exemplos, você deverá encontrar a marcação "TODO" em *example\_2.py* e você deverá implementar o Decorator vanilla (baunilha) simulando aumentar o sabor no café. Esse Decorator deve implementar o mesmo padrão dos anteriores, adicionando custo (cost) e descrição (description). Você deverá entregar todo o arquivo *example\_2.py* atualizado com um exemplo implementado do seu novo Decorator.
 
+:warning: **Atenção**: Seu arquivo .py deve ser executável, isto é, se o professor executar o código e acontecer algum erro de execução, sua entrega para esse item não será considerada.
+
 ## 2. Design Patterns
 
 Após executar e interagir com a aplicação Flask, responda:
 
-- 2.1 Em geral, qual é a importancia de usar Design Patterns?
+- 2.1 Em geral, qual é a importância de usar Design Patterns?
 
 - 2.2 Como os padrões de projeto usados ​​no exemplo em Flask podem ser aplicados para aprimorar a escalabilidade e a confiabilidade de um sistema distribuído? A sua resposta deve contemplar os três padrões de projeto usados no exemplo em Flask.
