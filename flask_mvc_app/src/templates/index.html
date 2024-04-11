@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes App</title>
+
+    <script>
+      // JavaScript function to handle the deletion of notes
+      function deleteNote(noteId) {
+         fetch(`/delete/${noteId}`, {method: 'DELETE',})
+         .then(response => {
+            if(response.ok) {
+            // On successful deletion, remove the note element from the page
+               document.getElementById(`note-${noteId}`).remove();
+            } else {
+            // If there's an error, you can handle it here (e.g., show an error message)
+               alert('There was an error deleting the note.');
+            }
+         }).catch(error => {
+            // Catch and display any errors that occur during the fetch operation
+               console.error('Error:', error);
+               alert('An error occurred. Please try again.');
+         });
+      }
+    </script>
+</head>
+<body>
+    <h1>Notes</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="content" placeholder="Add new note">
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        {% for note in notes %}
+        <li id="note-{{ note.id }}">
+         {{ note.content }}
+
+         <!-- Button to call the JavaScript function for deleting notes -->
+         <button onclick="deleteNote({{ note.id }})">Delete</button>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
