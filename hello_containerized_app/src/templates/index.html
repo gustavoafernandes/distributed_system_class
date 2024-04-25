@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Message Board</title>
+</head>
+<body>
+    <h1>Message Board</h1>
+    <form action="/submit" method="post">
+        <input type="text" name="message" placeholder="Enter your message" required>
+        <button type="submit">Submit</button>
+    </form>
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
