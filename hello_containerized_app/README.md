@@ -55,7 +55,7 @@ docker exec -it <redis-container-name ou redis-container-id> redis-cli
    lrange messages 0 -1
    ```
 
-- Em caso de alteração na aplicação Flask, apague os contêineres via comandos Docker ou uando o plugin. Mas você também pode, via Compose:
+- Em caso de alteração na aplicação Flask, você pode, via Compose:
 ```
 docker-compose up --build
 ```
@@ -74,7 +74,16 @@ O [Codespace](https://github.com/codespaces) é um ambiente de desenvolvimento e
 
 :warning: **Atenção!** Desligue a sua instância do Codespace, uma vez que você possui um [limite mensal gratuito de utilização](https://docs.github.com/en/codespaces/overview#billing-for-codespaces).
 
-# Exercício para entrega [WIP]
+# Exercícios para entrega
 
 Você deve interagir com a applicação, assim como estudar o código fonte, com o intuito de entender a importância do Docker em desacoplar os componentes. Em seguida, você deverá responder:
 
+1. Explique como o Flask interage com o Redis, isto é, quais são as rotas disponíveis e como elas interagem com o Redis?
+
+2. O que acontece se o Redis ficar temporariamente indisponível? Como isso afeta as funcionalidades da aplicação?
+
+3. Explique como essa aplicação pode escalar para gerenciar aumento no tráfego de requisições. Quais componentes você escalaria?
+
+4. Pesquise sobre Balanceamento de Carga (*Load Balancing*). Em seguida, explique como você usaria o balanceamento de carga nesta aplicação. Use o contexto apresentado na sua resposta para a questão anterior.
+
+5. Que tipo de problema pode aparecer em relação aos dados em aplicações distribuídas como esta? Mais especificamente, problemas relacionados a inconsitência dos dados na tentativa de escalar o banco.
