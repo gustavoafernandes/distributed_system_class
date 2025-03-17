@@ -45,7 +45,7 @@ Usar códigos de status adequados (por exemplo, 200 para sucesso, 404 para não 
 
 # Exercício para entrega
 
-1. Liste todos os *endpoints* definedos na aplicação e especifique quais métodos HTTP cada um suporta.
+1. Liste todos os *endpoints* definidos na aplicação e especifique quais métodos HTTP cada um suporta.
 2. Em relação ao conceito de Interface Uniforme, como o agrupamento de operações para livros sobre /books está de acordo com esse conceito?
 3. Na aplicação foi usado o Swagger (via [Flasgger](https://github.com/flasgger/flasgger)) para um propósito bem específico (acesse o *endpoint* /apidocs). Qual? Explique.
 4. Você deverá criar uma rota para deletar um item da base. A rota deve ser no formato "/books/<int:book_id>". Atente-se à variável
