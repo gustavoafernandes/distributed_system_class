@@ -1,10 +1,23 @@
 # Containerized applications
 
-Esta aplicação apresenta um exemplo em Flask que permite ao usuário submeter mensagens por meio de um formulário web. Essas mensagens são armazenadas no Redis, um banco NoSQL *in-memory*, demonstrando um básico uso de integração entre uma aplicação web com um banco de dados. A aplicação roda em contêineres Docker para garantir desacoplamento e facilidade em manutenção e escalabilidade.
+Esta aplicação apresenta um exemplo em Flask que permite ao usuário cadastrar livros por meio de um formulário web. Essas requisições são armazenadas no Redis, um banco NoSQL *in-memory*, demonstrando um básico uso de integração entre uma aplicação web com um banco de dados. A aplicação roda em contêineres Docker para garantir desacoplamento e facilidade em manutenção e escalabilidade, em relação ao serviço e sua base de dados. Esta aplicação possui uma arquitura Monolítica.
+
+## Redis
+O Redis é um banco em memória e NoSQL, que também pode ser utilizado como cache ou *broker* de mensagens, conhecido por sua velocidade e flexibilidade. Ele usa uma estrutura de dados chave-valor, onde cada dado é associado a uma chave exclusiva. Essa chave é associada a um hash.
+
+- Hash: Um hash deve identificar unicamente um elemento de um conjunto. É a chave usada pelo banco para qualquer manipulação daquele elemento. Na nossa aplicação, um hash é gerado, como no exemplo abaixo, pela chave "*book:1*":
+````
+"book:1" => {
+    "id": "1",
+    "title": "Flask Web Development: Developing Web Applications with Python",
+    "author": "Miguel Grinberg",
+    "published": "2018"
+}
+````
 
 ## Docker
 
-Docker é uma plataforma aberta para desenvolver, enviar e executar aplicações. Ela permite que o desenvolvedor separe a aplicação da infraestrutura permitindo uma entrega rápida. O Docker Compose é uma ferramenta para definir e executar aplicações Docker com vários contêineres. Com o Compose, você usa um arquivo YAML para configurar os serviços, redes e volumes da sua aplicação e, em seguida, cria e inicia todos os serviços da sua configuração com um único comando.
+Docker é uma plataforma aberta para executar aplicações. Ela permite que o desenvolvedor separe a aplicação da infraestrutura. O Docker Compose é uma ferramenta para definir aplicações Docker com vários contêineres. Com o Compose, você usa um arquivo YAML para configurar os serviços, redes e volumes da sua aplicação e, em seguida, cria e inicia todos os serviços da sua configuração com um único comando.
 
 - Instale o docker em sua máquina local (ou ambiente virtual). Siga um dos passos abaixo:
    - *https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository*, ou
@@ -20,15 +33,15 @@ Docker é uma plataforma aberta para desenvolver, enviar e executar aplicações
    - sudo docker rm image-name (ou image-id)
    - sudo docker image rm image-name (ou image-id)
 
-Você também pode instalar um plugin Docker na sua IDE para gerenciar suas imagens e contêineres.
+:warning: Você também pode instalar uma extensão Docker na sua IDE para gerenciar suas imagens e contêineres.
 
 ## Passos para Executar Local
 
-- Certifique-se de que Python, Docker, Flask e Redis estejam instalados. Preferencialmente, use um ambiente para desenvolver cada projeto.
+- Certifique-se de que Python, Docker, Flask e Redis estejam instalados no seu ambiente.
    - Flask e Redis podem ser instalados via *pip*,
    - já o Python e Docker pelo gerenciador do SO.
 
-- Caso deseje usar o Codespace, o Docker e Docker Compose já estão instalados no ambiente.
+- Se deseja usar o Codespace, o Docker e Docker Compose já estão instalados no ambiente.
 
 - Após configurar o repositório localmente, navegue até o diretório raíz do projeto.
 
@@ -62,18 +75,6 @@ docker-compose up --build
 
 Esse último comando re-cria a imagem Docker em caso de alteração (na aplicação Flask) e reinicia o contêiner.
 
-## Passos para Executar usando o Github Codespace
-
-O [Codespace](https://github.com/codespaces) é um ambiente de desenvolvimento em nuvem.
-
-- No repositório do Github, clique em "Code".
-- Em seguida, clique na aba "Codespaces".
-- Clique em "Create Codespace" para criar uma nova instância.
-- Execute a aplicação conforme os comandos anteriores em Execução Local.
-- Atente-se ao endereço disponibilizado em "PORTAS", assim como, deixe a visibilidade do endereço web como "Público".
-
-:warning: **Atenção!** Desligue a sua instância do Codespace, uma vez que você possui um [limite mensal gratuito de utilização](https://docs.github.com/en/codespaces/overview#billing-for-codespaces).
-
 # Exercícios para entrega
 
 Você deve interagir com a applicação, assim como estudar o código fonte, com o intuito de entender a importância do Docker em desacoplar os componentes. Em seguida, você deverá responder:
@@ -82,7 +83,7 @@ Você deve interagir com a applicação, assim como estudar o código fonte, com
 
 2. O que acontece se o Redis ficar temporariamente indisponível? Como isso afeta as funcionalidades da aplicação?
 
-3. Explique como essa aplicação pode escalar para gerenciar aumento no tráfego de requisições. Quais componentes você escalaria?
+3. Explique como essa aplicação pode escalar para gerenciar aumento no tráfego de requisições. Quais componentes você escalaria? Pesquise sobre escalabilidade vertical VS horizontal para responder esta pergunta.
 
 4. Pesquise sobre Balanceamento de Carga (*Load Balancing*). Em seguida, explique como você usaria o balanceamento de carga nesta aplicação. Use o contexto apresentado na sua resposta para a questão anterior.
 

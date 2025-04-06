@@ -1,0 +1,21 @@
+# Define os serviços, redes e volumes para contêineres Docker.
+# Este arquivo configura tanto o aplicativo web Flask quanto o banco de dados Redis.
+services:
+  # "web" é o serviço Flask.
+  web:
+    # constrói o aplicativo Flask usando o Dockerfile.
+    build: .
+    # Mapeia a porta 5050 na máquina host para a porta 5050 dentro do contêiner.
+    # Isso permite que você acesse o aplicativo Flask via localhost:5050.
+    ports:
+      # Especifica que o serviço "web" depende do serviço "redis".
+      # O Docker Compose iniciará o Redis primeiro antes de iniciar o aplicativo web.
+      - "5050:5050"
+    depends_on:
+      - redis
+  
+  # "redis" é o serviço de banco de dados Redis.
+  redis:
+    # Extrai a imagem Redis usando a versão "alpine".
+    # A versão Alpine é uma distribuição leve, ideal para desenvolvimento e produção.
+    image: "redis:alpine"

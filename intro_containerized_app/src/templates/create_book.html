@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Book</title>
+</head>
+<body>
+  <h1>Add New Book</h1>
+  <form method="post" action="{{ url_for('create_book') }}">
+    <label>Title:</label><br>
+    <input type="text" name="title"><br>
+    <label>Author:</label><br>
+    <input type="text" name="author"><br>
+    <label>Published:</label><br>
+    <input type="text" name="published"><br><br>
+    <button type="submit">Add Book</button>
+  </form>
+  <br>
+  <a href="{{ url_for('home') }}">Back to Home</a>
+</body>
+</html>

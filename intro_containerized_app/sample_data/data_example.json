@@ -1,0 +1,22 @@
+{
+    "books": [
+        {
+            "id": 0,
+            "title": "Flask Web Development: Developing Web Applications with Python",
+            "author": "Miguel Grinberg",
+            "published": "2018"
+        },
+        {
+            "id": 1,
+            "title": "Docker: Up & Running: Shipping Reliable Containers in Production",
+            "author": "Sean P Kane, Karl Matthias",
+            "published": "2018"
+            },
+        {
+            "id": 2,
+            "title": "Learning SQL: Generate, Manipulate, and Retrieve Data",
+            "author": "Alan Beaulieu",
+            "published": "2020"
+        }
+    ]
+}
