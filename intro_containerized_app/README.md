@@ -1,6 +1,6 @@
 # Containerized applications
 
-Esta aplicação apresenta um exemplo em Flask que permite ao usuário cadastrar livros por meio de um formulário web. Essas requisições são armazenadas no Redis, um banco NoSQL *in-memory*, demonstrando um básico uso de integração entre uma aplicação web com um banco de dados. A aplicação roda em contêineres Docker para garantir desacoplamento e facilidade em manutenção e escalabilidade, em relação ao serviço e sua base de dados. Esta aplicação possui uma **arquitura Monolítica**: 
+Esta aplicação apresenta um exemplo em Flask que permite ao usuário cadastrar livros por meio de um formulário web. Essas requisições são armazenadas no Redis, um banco NoSQL *in-memory*, demonstrando um básico uso de integração entre uma aplicação web com um banco de dados. A aplicação roda em contêineres Docker para garantir desacoplamento e facilidade em manutenção e escalabilidade, em relação ao serviço e sua base de dados. Esta aplicação possui uma **arquitetura Monolítica**: 
 - 1) única fonte do código base, isto é, todas as suas funcionalidades, incluindo a interface da web, lógica de negócios e acesso a dados reside em uma base de código. 
 - 2) componentes são fortemente acoplados, isto é, para atualizar a maneira como os livros são manipulados ou alterar a lógica de armazenamento de dados, será necessário modificar o aplicativo central. Isso pode simplificar o desenvolvimento para aplicativos menores, mas torna o dimensionamento ou o isolamento de falhas mais desafiador em sistemas maiores.
 
@@ -64,7 +64,7 @@ docker-compose up
 ```
 docker exec -it <redis-container-name ou redis-container-id> redis-cli
 ```
-- Use `smembers <set>` para listar todos os elementos do set armazenada sobre o nome *"key"*.
+- Use `smembers <set>` para listar todos os elementos do set armazenados sobre o nome *"set"*.
    - exemplo:
    ```
    smembers books
