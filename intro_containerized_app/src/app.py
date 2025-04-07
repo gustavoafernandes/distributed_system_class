@@ -36,19 +36,19 @@ def initialize_books() -> None:
                 "published": "2020"
             }
         ]
-    for book in sample_books:
+        for book in sample_books:
 
-        # Incrementa em 1 o valor de uma chave. 
-        # Se a chave não existe, será criada com valor inicial 1.
-        new_id = db.incrby("book:id")
+            # Incrementa em 1 o valor de uma chave. 
+            # Se a chave não existe, será criada com valor inicial 1.
+            new_id = db.incrby("book:id")
 
-        book["id"] = new_id
+            book["id"] = new_id
 
-        # armazena um hash para cada chave de cada livro
-        db.hmset(f"book:{new_id}", book)
+            # armazena um hash para cada chave de cada livro
+            db.hmset(f"book:{new_id}", book)
 
-        # add o livro no set 'books'
-        db.sadd("books", new_id)
+            # add o livro no set 'books'
+            db.sadd("books", new_id)
 
 def get_book_by_id(book_id) -> dict:
     """
@@ -62,7 +62,7 @@ def get_book_by_id(book_id) -> dict:
         um livro com o ID especificado, retorna None.
     """
 
-    # recupera um elemento pelo hash da chave
+    # recupera um elemento pelo hash da chave fornecida
     book = db.hgetall(f"book:{book_id}")
 
     if not book:

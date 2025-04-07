@@ -1,11 +1,13 @@
 # Containerized applications
 
-Esta aplicação apresenta um exemplo em Flask que permite ao usuário cadastrar livros por meio de um formulário web. Essas requisições são armazenadas no Redis, um banco NoSQL *in-memory*, demonstrando um básico uso de integração entre uma aplicação web com um banco de dados. A aplicação roda em contêineres Docker para garantir desacoplamento e facilidade em manutenção e escalabilidade, em relação ao serviço e sua base de dados. Esta aplicação possui uma arquitura Monolítica.
+Esta aplicação apresenta um exemplo em Flask que permite ao usuário cadastrar livros por meio de um formulário web. Essas requisições são armazenadas no Redis, um banco NoSQL *in-memory*, demonstrando um básico uso de integração entre uma aplicação web com um banco de dados. A aplicação roda em contêineres Docker para garantir desacoplamento e facilidade em manutenção e escalabilidade, em relação ao serviço e sua base de dados. Esta aplicação possui uma **arquitura Monolítica**: 
+- 1) única fonte do código base, isto é, todas as suas funcionalidades, incluindo a interface da web, lógica de negócios e acesso a dados reside em uma base de código. 
+- 2) componentes são fortemente acoplados, isto é, para atualizar a maneira como os livros são manipulados ou alterar a lógica de armazenamento de dados, será necessário modificar o aplicativo central. Isso pode simplificar o desenvolvimento para aplicativos menores, mas torna o dimensionamento ou o isolamento de falhas mais desafiador em sistemas maiores.
 
 ## Redis
 O Redis é um banco em memória e NoSQL, que também pode ser utilizado como cache ou *broker* de mensagens, conhecido por sua velocidade e flexibilidade. Ele usa uma estrutura de dados chave-valor, onde cada dado é associado a uma chave exclusiva. Essa chave é associada a um hash.
 
-- Hash: Um hash deve identificar unicamente um elemento de um conjunto. É a chave usada pelo banco para qualquer manipulação daquele elemento. Na nossa aplicação, um hash é gerado, como no exemplo abaixo, pela chave "*book:1*":
+- Hash: Um hash é um valor gerado e deve identificar unicamente um elemento de um conjunto. É a chave usada pelo banco para qualquer manipulação daquele elemento. Na nossa aplicação, um hash é gerado, como no exemplo abaixo, pela chave "*book:1*":
 ````
 "book:1" => {
     "id": "1",
@@ -23,7 +25,7 @@ Docker é uma plataforma aberta para executar aplicações. Ela permite que o de
    - *https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository*, ou
    - https://docs.docker.com/desktop/
 
-- Os comandos Docker que mais usaremos são:
+- Os comandos Docker mais comuns são:
    - sudo docker image build -t image-name .
    - sudo docker image ls
    - sudo docker container ls -a
@@ -62,10 +64,10 @@ docker-compose up
 ```
 docker exec -it <redis-container-name ou redis-container-id> redis-cli
 ```
-- Use `lrange <key> 0 -1` para listar todos os elementos da lista armazenada sobre a chave *"key"*.
+- Use `smembers <set>` para listar todos os elementos do set armazenada sobre o nome *"key"*.
    - exemplo:
    ```
-   lrange messages 0 -1
+   smembers books
    ```
 
 - Em caso de alteração na aplicação Flask, você pode, via Compose:
@@ -79,7 +81,7 @@ Esse último comando re-cria a imagem Docker em caso de alteração (na aplicaç
 
 Você deve interagir com a applicação, assim como estudar o código fonte, com o intuito de entender a importância do Docker em desacoplar os componentes. Em seguida, você deverá responder:
 
-1. Explique como o Flask interage com o Redis, isto é, quais são as rotas disponíveis e como elas interagem com o Redis?
+1. Explique como o Flask interage com o Redis, isto é, quais são as rotas disponíveis e como elas interagem com o Redis? Não se preocupe em explicar os comandos do Redis, apenas atente-se ao que cada rota faz em sua interação com o Redis.
 
 2. O que acontece se o Redis ficar temporariamente indisponível? Como isso afeta as funcionalidades da aplicação?
 
