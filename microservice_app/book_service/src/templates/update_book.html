@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Book</title>
+  </head>
+  <body>
+    <h1>Edit Book</h1>
+    <form method="post" action="{{ url_for('update_book', book_id=book.id) }}">
+      Title: <input type="text" name="title" value="{{ book.title }}"><br>
+      Author: <input type="text" name="author" value="{{ book.author }}"><br>
+      Published: <input type="text" name="published" value="{{ book.published }}"><br>
+      <button type="submit">Update Book</button>
+    </form>
+    <br>
+    <a href="{{ url_for('home') }}">Back to Home</a>
+  </body>
+</html>

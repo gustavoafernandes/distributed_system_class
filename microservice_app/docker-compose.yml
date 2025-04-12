@@ -1,0 +1,29 @@
+# Define os serviços, redes e volumes para contêineres Docker.
+# Este arquivo configura tanto os serviços Flask quanto os bancos de dados Redis.
+services:
+  book-service:
+    build: ./book_service
+    ports:
+      - "5050:5050"
+    depends_on:
+      - redis
+
+  cart-service:
+    build: ./cart_service
+    ports:
+      - "5051:5051"
+    depends_on:
+      - redis
+  
+  api-gateway:
+    build: ./api_gateway
+    ports:
+      - "8080:80"
+    depends_on:
+      - book-service
+      - cart-service
+  
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
