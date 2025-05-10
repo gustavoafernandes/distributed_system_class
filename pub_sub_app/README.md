@@ -2,7 +2,7 @@
 
 ## Overview
 
-O Padrão de arquitetura Pub/Sub é um paradigma de troca de mensagens onde Publicadores de mensagens (publishers) não são programados para enviar suas mensages para assinantes específicos (subscribers). Em sistemas Pub/Sub, as mensagens são publicadas para tópicos sem o conhecimento de qualquer assinante. Os assinantes expressam interesse em um ou mais tópicos e, somente, recebem messagens de seu interesse, sem o conhecimento de quem publicou.
+O Padrão de arquitetura Pub/Sub é um paradigma de troca de mensagens onde Publicadores de mensagens (publishers) **não** são programados para enviar suas mensages diretas para assinantes específicos (subscribers). Em sistemas Pub/Sub, as mensagens são publicadas para tópicos sem o conhecimento de qualquer assinante. Os assinantes expressam interesse em um ou mais tópicos e, somente, recebem messagens de seu interesse, sem o conhecimento de quem publicou. Este padrão é baseado na arquitetura de Microsserviços.
 
 ### Benefícios dessa Arquitetura
 
@@ -10,56 +10,55 @@ O Padrão de arquitetura Pub/Sub é um paradigma de troca de mensagens onde Publ
 - Escalabilidade: O sistema é facilmente escalável, uma vez que novos assinantes e publicadores podem ser adicionados sem um afetar o outro.
 - Flexibilidade: Assinantes podem processar mensagens de acordo com a maneira que cada um requerir.
 
-# Example Flask Pub/Sub Application
-
-É apresentado um exemplo de aplicação Flask no padrão Pub/Sub como um único serviço. O exemplo tem como objetivo provê um entendimento conceitual do padrão Pub/Sub.
-
 ## Features
 
 - Tópicos pré-definidos: A aplicação inicia com um conjunto de tópicos válidos, simulando os "canais" de distribuição de mensagens.
 - Subscription: Os clientes podem inscrever-se para esses tópicos, indicando seu interesse em receber mensagens relacionadas a esses tópicos.
-- Publishing: Publicados enviam mensagens para um tópico específico.
-- Recuperação da Informação: Um endpoint */info* permite listar o estado atual dos tópicos, assinantes e mensagens publicadas.
+- Publishing: Publicadores enviam mensagens para um tópico específico.
+- Recuperação da Informação: Um endpoint permite listar o estado atual das mensagens publicadas.
+- O Redis faz o papel do barramento de mensagens (*message broker*). Uma única instância (serviço) é usada. Assim temos atualizações simples, de baixa latência e em tempo real, nas quais só se importa com os assinantes atuais.
 
 ## Passos para Executar Local
 
-- Certifique-se de que Python e Flask estejam instalados. Preferencialmente, use um ambiente para desenvolver cada projeto.
-- Navegue até o diretório da aplicação Flask.
-- Execute o script usando o comando:
+- Certifique-se de que Python, Docker, Flask e Redis estejam instalados no seu ambiente.
+   - Flask e Redis podem ser instalados via *pip*,
+   - já o Python e Docker pelo gerenciador do SO.
+
+- Se deseja usar o Codespace, o Docker e Docker Compose já estão instalados no ambiente.
+
+- Após configurar o repositório localmente, navegue até o diretório raíz do projeto.
+
+- Crie as Imagens Docker:
 ```
-python src/app.py
+docker-compose build
 ```
-- Abra um navegador web e vá para http://localhost:5000 ou http://0.0.0.0:5000.
 
-## Passos para Executar usando o Github Codespace
+- Inicie os contêineres Docker da aplicação. Com isso a aplicação Flask ficará conectada com o Redis, permitindo a comunicação entre os contêineres:
+```
+docker-compose up
+```
 
-O [Codespace](https://github.com/codespaces) é um ambiente de desenvolvimento em nuvem.
+- Acesse a aplicação via browser: http://127.0.0.1:5051/messages. Se estiver no Codespace, atente-se ao endereço fornecido.
 
-- No repositório do Github, clique em "Code".
-- Em seguida, clique na aba "Codespaces".
-- Clique em "Create Codespace" para criar uma nova instância.
-- Execute a aplicação conforme o comando anterior para Execução Local.
-- Atente-se ao endereço disponibilizado em "PORTAS", assim como, deixe a visibilidade do endereço web como "Público".
+- Em caso de alteração na aplicação Flask, você pode, via Compose:
+```
+docker-compose up --build
+```
 
-:warning: **Atenção!** Desligue a sua instância do Codespace, uma vez que você possui um [limite mensal gratuito de utilização](https://docs.github.com/en/codespaces/overview#billing-for-codespaces).
+Esse último comando re-cria a imagem Docker em caso de alteração (na aplicação Flask) e reinicia o contêiner.
 
 ## Interagindo com a aplicação
 
-Utilize o Postman com requisição:
-
-- GET para a rota */info*
-- POST para as rotas */subscribe* e */publish*. 
-
-Para a primeira, envie um json no formato
+1. Utilize o Postman com requisição POST para a rota */publish* com o json:
 
 ```
-{"topic": "sports", "callback_url": "soccer"}
+{"topic":"sports", "message":"Game tonight at 8PM"}
 ```
 
-já para a segunda rota, envie jsons no formato
+2. Faça outro teste usndo:
 
 ```
-{"topic": "sports", "message": "Breaking News!"}
+{"topic": "tech", "message":"Breaking News! New Gemini pro for free."}
 ```
 
 # Exercício para entrega
@@ -68,8 +67,10 @@ já para a segunda rota, envie jsons no formato
 
 2. Como o padrão Publish/Subscribe difere do padrão mais simples Request/Response presente em aplicações web?
 
-3. Dado que a aplicação usa tópicos pré-definidos, o que acontece se um cliente tenta assinar um tópico que não está pré-definido?
+3. Dado que a aplicação usa tópicos pré-definidos, o que acontece se um cliente publica um tópico que não está pré-definido? Faça esse teste usando o json abaixo e responda a pergunta. Seja completo em sua resposta.
 
-4. A aplicação Flask simula o uso de **callbacks** com simples declarações "print". Entendendo o propósito de uma callback, qual é a importância da utilização delas em um sistema no padrão Pub/Sub?
+```
+{"topic":"cooking", "message":"New recipe for lasagna!"}
+```
 
-5. O exemplo não possui uma maneira do assinante cancelar sua assinatura. Proponha uma solução que implemente essa nova configuração, considerando os princípios RESTful. Você não precisa implementar código, mas você deve descrever o que deverá ser alterado e adicionado para que essa nova feature possa ser implementada.
+4. O exemplo não possui uma maneira do assinante cancelar sua assinatura. Proponha uma solução que implemente essa nova configuração, considerando os princípios RESTful. Você não precisa implementar código, mas você deve descrever o que deverá ser alterado e adicionado para que essa nova feature possa ser implementada. Descreva de forma clara onde deve haver alteração, como é a altereção e o que devemos criar.

@@ -1,0 +1,23 @@
+# Define os serviços para contêineres Docker.
+
+services:  
+  publisher:
+    build: ./publisher
+    ports:
+      - "5050:5050"
+    depends_on:
+      - redis
+
+  subscriber:
+    build: ./subscriber
+    environment:
+      - TOPICS=sports,tech,entertainment
+    ports:
+      - "5051:5051"
+    depends_on:
+      - redis
+    
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
